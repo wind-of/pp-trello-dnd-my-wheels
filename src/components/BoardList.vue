@@ -2,18 +2,30 @@
   <div class="list-wrapper">
     <div class="list">
       <div class="list-header">
-        <p>Kek</p>
+        <p>{{ list.title }}</p>
       </div>
       <div class="list-body">
-        aoaoaoaoaooaoaoaooa
+        <Card
+            v-for="(card, idx) in list.cards"
+            :key="list.id + card.title + idx"
+            :title="card.title"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Card from "@/components/BoardListCard"
 export default {
-  name: "BoardList"
+  name: "BoardList",
+
+  props: {
+    list: {
+      required: true,
+      type: Object
+    }
+  }
 }
 </script>
 

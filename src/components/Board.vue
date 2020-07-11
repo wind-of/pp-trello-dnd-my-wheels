@@ -3,6 +3,7 @@
     <List
       v-for="(list, idx) in lists"
       :key="list.id + idx"
+      :list="list"
     />
     <ListComposer
         v-model="listTitle"
