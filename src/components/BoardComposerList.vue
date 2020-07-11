@@ -9,7 +9,8 @@
       <template v-else>
         <input 
             type="text" 
-            placeholder="Enter list title..." 
+            placeholder="Enter list title..."
+            v-model="listTitle"
         >
         <div class="add-list-controls">
           <button @click="$emit('add-list')">Add List</button>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { createPropModel } from "@/helpers/prop-model"
 export default {
   name: "ListComposer",
 
@@ -29,7 +31,15 @@ export default {
       type: Boolean,
       required: true
     },
+    value: {
+      required: true,
+      type: String
+    }
   },
+
+  computed: {
+    listTitle: createPropModel()
+  }
 }
 </script>
 

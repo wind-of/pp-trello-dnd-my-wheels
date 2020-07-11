@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       lists: [ createList("Kek") ],
-      listComposing: false
+      listComposing: false,
+      listTitle: ""
     }
   },
 
