@@ -4,7 +4,12 @@
       v-for="(list, idx) in lists"
       :key="list.id + idx"
     />
-    <ComposerList/>
+    <ListComposer
+        v-model="listTitle"
+        :listComposing="listComposing"
+        @list-composing-toggle="onListComposingToggle"
+        @add-list="onAddList"
+    />
   </div>
 </template>
 
@@ -23,8 +28,14 @@ export default {
   data() {
     return {
       lists: [ createList("Kek") ],
+      listComposing: false
     }
   },
+
+  metods: {
+    onListComposingToggle() {},
+    onAddList() {}
+  }
 }
 </script>
 

@@ -1,17 +1,19 @@
 <template>
   <div class="list-composer-wrapper">
-    <div class="list-composer">
-      <template>
-        <p> + Add another list</p>
+    <div :class="[{'add-mod': listComposing}, 'list-composer']">
+      <template v-if="!listComposing">
+        <p @click="$emit('list-composing-toggle')">
+          + Add another list
+        </p>
       </template>
-      <template>
+      <template v-else>
         <input 
             type="text" 
             placeholder="Enter list title..." 
         >
         <div class="add-list-controls">
-          <button>Add List</button>
-          <i>X</i>
+          <button @click="$emit('add-list')">Add List</button>
+          <i @click="$emit('list-composing-toggle')">X</i>
         </div>
       </template>
     </div>
@@ -21,6 +23,13 @@
 <script>
 export default {
   name: "ListComposer",
+
+  props: {
+    listComposing: {
+      type: Boolean,
+      required: true
+    },
+  },
 }
 </script>
 
