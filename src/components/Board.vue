@@ -4,17 +4,20 @@
       v-for="(list, idx) in lists"
       :key="list.id + idx"
     />
+    <ComposerList/>
   </div>
 </template>
 
 <script>
 import List from "@/components/BoardList"
+import ListComposer from "@/components/BoardComposerList"
 import { createList } from "@/entities/index"
 export default {
   name: "Board",
 
   components: {
-    List
+    List,
+    ListComposer
   },
 
   data() {
