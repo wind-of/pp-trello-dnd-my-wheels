@@ -1,9 +1,12 @@
 <template>
   <div class="board">
     <List
-      v-for="(list, idx) in lists"
-      :key="list.id + idx"
-      :list="list"
+        v-for="(list, idx) in lists"
+        v-model="cardTitle"
+        :key="list.id + idx"
+        :list="list"
+        @card-composing-toggle="onCardComposingToggle"
+        @add-card="onAddCard"
     />
     <ListComposer
         v-model="listTitle"
@@ -31,7 +34,8 @@ export default {
     return {
       lists: [ createList("Kek") ],
       listComposing: false,
-      listTitle: ""
+      listTitle: "",
+      cardTitle: ""
     }
   },
 
@@ -39,6 +43,8 @@ export default {
     onListComposingToggle() {
       this.listComposing = !this.listComposing;
     },
+    onCardComposingToggle() {},
+    onAddCard(){},
 
     onAddList() {
       const { listTitle, lists } = this;

@@ -10,6 +10,12 @@
             :key="list.id + card.title + idx"
             :title="card.title"
         />
+        <CardComposer 
+            v-model="cardTitle"
+            :cardComposing="list.cardComposing"
+            @card-composing-toggle="$emit('card-composing-toggle', list.id)"
+            @add-card="$emit('add-card', list.id)"
+        />
       </div>
     </div>
   </div>
@@ -17,14 +23,24 @@
 
 <script>
 import Card from "@/components/BoardListCard"
+import CardComposer from "@/components/BoardListComposerCard"
 export default {
   name: "BoardList",
 
   props: {
     list: {
-      required: true,
-      type: Object
+      type: Object,
+      required: true
+    },
+    value: {
+      type: String,
+      required: true
     }
+  },
+
+  components: {
+    Card,
+    CardComposer
   }
 }
 </script>

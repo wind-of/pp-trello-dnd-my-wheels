@@ -1,62 +1,60 @@
 <template>
-  <div class="list-composer-wrapper">
-    <div :class="[{'add-mod': listComposing}, 'list-composer']">
-      <template v-if="!listComposing">
-        <p @click="$emit('list-composing-toggle')">
-          + Add another list
-        </p>
-      </template>
-      <template v-else>
-        <input 
-            type="text" 
-            placeholder="Enter list title..."
-        >
-        <div class="add-list-controls">
-          <button @click="$emit('add-list')">Add List</button>
-          <i @click="$emit('list-composing-toggle')">X</i>
-        </div>
-      </template>
-    </div>
+  <div :class="[{'add-mod': cardComposing}, 'card-composer']" >
+    <template v-if="!cardComposing">
+      <p @click="$emit('card-composing-toggle')">
+        + Add another card
+      </p>
+    </template>
+    <template v-else>
+      <textarea 
+          placeholder="Enter a title for this card..." 
+          v-model="cardTitle">
+      </textarea>
+      <div class="add-card-controls">
+        <button @click="$emit('add-card')">Add List</button>
+        <i @click="$emit('card-composing-toggle')">X</i>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import { createPropModel } from "@/helpers/prop.model"
 export default {
-  name: "ListComposer",
+  name: "BoardListCardComposer",
 
   props: {
-    listComposing: {
+    cardComposing: {
       type: Boolean,
       required: true
     },
+    value: {
+      type: String,
+      required: true
+    }
   },
+
+  computed: {
+    cardTitle: createPropModel()
+  }
 }
 </script>
 
 <style lang="scss">
-.list-composer-wrapper{
-  width: 275px;
-  margin: 15px 5px;
-}
-.list-composer{
+.card-composer{
   p{
-    background: rgba(255, 255, 255, .32);
     padding: 10px;
-    border-radius: 3px;
-    transition: .1s;
-    color: white;
     cursor: pointer;
     &:hover{
-      background: rgba(255, 255, 255, .45)
+      background-color: rgba(9, 30, 66, .08);
     }
   }
-  input{
-    width: 246px;
-    margin-bottom: 2px;
+  textarea{
+    width: 245px;
+    height: 75px;
     font-size: 15px;
-    padding: 8px;
   }
-  .add-list-controls{
+  .add-card-controls{
     margin-top: 2px;
     width: inherit;
     display: flex;
@@ -71,10 +69,6 @@ export default {
       margin-left: 6px;
       font-size: 18px;
     }
-  }
-  &.add-mod{
-    background: #ebecf0;
-    padding: 5px;
   }
 }
 </style>
