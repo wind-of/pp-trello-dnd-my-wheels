@@ -6,3 +6,7 @@ export function shuffle(str) {
 }
 
 export const uid = () => shuffle("`1234567890-=~!@#$%^&*()_+qwertyuiop[]QWERTYUIOP{}asdfghjkl;'ASDFGHJKL:\"\\zxcvbnm,./ZXCVBNM<>?")
+
+export function isEmpty(arg) {
+	return !arg || !arg.length || !arg.trim().length
+}
