@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { createPropModel } from "@/helpers/prop-model"
+import { createPropModel } from "@/helpers/prop.model"
 export default {
   name: "ListComposer",
 

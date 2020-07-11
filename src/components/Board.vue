@@ -17,6 +17,7 @@
 import List from "@/components/BoardList"
 import ListComposer from "@/components/BoardComposerList"
 import { createList } from "@/entities/index"
+import { isEmpty } from "@/utils/index"
 export default {
   name: "Board",
 
@@ -33,9 +34,19 @@ export default {
     }
   },
 
-  metods: {
-    onListComposingToggle() {},
-    onAddList() {}
+  methods: {
+    onListComposingToggle() {
+      this.listComposing = !this.listComposing;
+    },
+
+    onAddList() {
+      const { listTitle, lists } = this;
+      this.listTitle = "";
+      
+      return !isEmpty(listTitle) 
+          ? lists.push(createList(listTitle))
+          : undefined;
+    }
   }
 }
 </script>
