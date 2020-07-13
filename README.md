@@ -1,5 +1,9 @@
 # pp-trello-dnd-my-wheels
 
+#### So, I tried to recreate Trello's Drag&Drop from scratch...
+_I have encountered some difficulties that I can't overcome now because of my inexperience._
+_Yeah, there are a lot of wheels :)_
+
 ## Project setup
 ```
 npm install
