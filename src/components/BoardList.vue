@@ -24,6 +24,7 @@
 <script>
 import Card from "@/components/BoardListCard"
 import CardComposer from "@/components/BoardListComposerCard"
+import { createPropModel } from '../helpers/prop.model'
 export default {
   name: "BoardList",
 
@@ -41,6 +42,10 @@ export default {
   components: {
     Card,
     CardComposer
+  },
+
+  computed: {
+    cardTitle: createPropModel()
   }
 }
 </script>

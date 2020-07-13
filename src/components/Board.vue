@@ -20,7 +20,7 @@
 <script>
 import List from "@/components/BoardList"
 import ListComposer from "@/components/BoardComposerList"
-import { createList } from "@/entities/index"
+import { createList, createCard } from "@/entities/index"
 import { isEmpty } from "@/utils/index"
 export default {
   name: "Board",
@@ -43,8 +43,33 @@ export default {
     onListComposingToggle() {
       this.listComposing = !this.listComposing;
     },
-    onCardComposingToggle() {},
-    onAddCard(){},
+
+    onCardComposingToggle(listId) {
+      const list = this.lists.find(({id}) => id === listId);
+
+      if(!this.cardComposingList) {
+        this.cardComposingList = list;
+      }
+      else if(this.cardComposingList.id === listId) {
+        this.cardTitle = "";
+      }
+      else {
+        this.cardComposingList.cardComposing = false;
+        this.cardComposingList = list;
+      }
+
+      return list.cardComposing = !list.cardComposing;
+    },
+
+    onAddCard(listId) {
+      const { cardTitle } = this;
+      const list = this.lists.find(({id}) => id === listId);
+      this.cardTitle = "";
+
+      return !isEmpty(cardTitle) 
+          ? list.cards.push(createCard(cardTitle))
+          : undefined
+    },
 
     onAddList() {
       const { listTitle, lists } = this;
