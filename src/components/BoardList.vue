@@ -5,11 +5,16 @@
         <p>{{ list.title }}</p>
       </div>
       <div class="list-body">
-        <Card
+        <Draggable 
             v-for="(card, idx) in list.cards"
             :key="list.id + card.title + idx"
-            :title="card.title"
-        />
+            dropTo=".list-body"
+            className="card-wrapper"
+            placeholderClassName="card-placeholder"
+            siblingsSelector=".card-wrapper"
+        >
+          <Card :title="card.title"/>
+        </Draggable>
         <CardComposer 
             v-model="cardTitle"
             :cardComposing="list.cardComposing"
@@ -24,6 +29,7 @@
 <script>
 import Card from "@/components/BoardListCard"
 import CardComposer from "@/components/BoardListComposerCard"
+import Draggable from "@/dnd/Draggable"
 import { createPropModel } from '../helpers/prop.model'
 export default {
   name: "BoardList",
@@ -41,7 +47,8 @@ export default {
 
   components: {
     Card,
-    CardComposer
+    CardComposer,
+    Draggable
   },
 
   computed: {
